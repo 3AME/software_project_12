@@ -2,10 +2,9 @@
   Created by IntelliJ IDEA.
   User: 33826
   Date: 2019/6/12
-  Time: 10:41
+  Time: 10:10
   To change this template use File | Settings | File Templates.
 --%>
-
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="java.text.*"%>
@@ -105,7 +104,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-head">
                 <!-- BEGIN PAGE TITLE -->
                 <div class="page-title">
-                    <h1></h1>设备管理 <small>设备统计结果</small></h1>
+                    <h1>数据管理 <small>数据统计</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
                 <!-- BEGIN PAGE TOOLBAR -->
@@ -217,7 +216,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="portlet box blue">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-globe"></i>统计结果
+                                <i class="fa fa-globe"></i>统计页
                             </div>
                             <div class="tools">
                                 <a href="javascript:;" class="collapse">
@@ -232,41 +231,106 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!--按钮条开始-->
 
 
+                            <div class="portlet light bordered form-fit">
+
                                 <div class="portlet-body form">
                                     <!-- BEGIN FORM-->
                                     <form action="#" class="form-horizontal form-row-seperated" id="page_form" name="page_form">
+                                        <div class="form-body">
+                                            <input type="hidden" id="action" name="action" value="statistic_record" />
+                                            <input type="hidden" id="table_name" name="table_name" value="agriculture_sensor" />
+                                            <input type="hidden" id="module_name" name="module_name" value="sensor" />
 
-                                            <input type="hidden" id="action" name="action" value="get_record" />
 
-                                            <input type="hidden" id="exist_resultset" name="exist_resultset" value="<%=existResultset%>" />
-
-
-
-                                                <%--<div id="result_image_div">--%>
-                                                <%--<img id="result_image" name="result_image" src="" alt="统计结果图" style="width: 100%; height: 100%;" />--%>
+                                            <%--<div class="form-group">--%>
+                                                <%--<label class="control-label col-md-3">权限</label>--%>
+                                                <%--<div class="col-md-3">--%>
+                                                    <%--<select class="form-control" id="role_id" name="role_id">--%>
+                                                        <%--<option value="null">无限制</option>--%>
+                                                        <%--<option value="normal">普通设备</option>--%>
+                                                        <%--<option value="manager">管理员</option>--%>
+                                                    <%--</select>--%>
+														<%--<span class="help-block">--%>
+														<%--选择创建设备的权限 </span>--%>
                                                 <%--</div>--%>
-                                                <div id="result_image_div" >
-                                                    <div id="result_image" style="height: 228px;">
+                                            <%--</div>--%>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">时间</label>
+                                                <div class="col-md-6">
+                                                    <span>从</span>
+                                                    <div class="input-group date form_datetime">
+
+                                                        <input type="text" id="time_from" name="time_from" class="form-control" size="16" placeholder="请输入限制时间" value=""/>
+														<span class="input-group-btn">
+															<button class="btn default date-set" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+														</span>
+
                                                     </div>
+                                                    <span>到</span>
+                                                    <div class="input-group date form_datetime">
+                                                        <input type="text" id="time_to" name="time_to" class="form-control" size="16" placeholder="请输入限制时间" value=""/>
+														<span class="input-group-btn">
+															<button class="btn default date-set" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+														</span>
+
+                                                    </div>
+                                                    <%--<button type="button" class="btn green-haze btn-circle btn-sm" id="today_button">今天</button>--%>
+                                                    <%--<button type="button" class="btn green-haze btn-circle btn-sm" id="yestoday_button">昨天</button>--%>
+                                                    <%--<button type="button" class="btn green-haze btn-circle btn-sm" id="before_yestoday_button">前天</button>--%>
+                                                    <%--<button type="button" class="btn green-haze btn-circle btn-sm" id="month_button">本月</button>--%>
+                                                    <%--<button type="button" class="btn green-haze btn-circle btn-sm" id="before_month_button">30天内</button>--%>
                                                 </div>
+                                            </div>
 
 
-                                            <div class="tab-pane" id="tab_2">
-                                                <table class="table table-striped table-bordered table-hover datatable" id="record_list">
-                                                    <thead id="record_list_head">
-                                                    </thead>
-                                                    <div id="#record_list_div"></div>
-                                                </table>
+                                            <div class="form-group last">
+
+                                                <label class="control-label col-md-3">请选择统计间隔</label>
+                                                <div class="col-md-3">
+                                                    <select class="table-group-action-input form-control input-medium" id="time_interval" name="time_interval">
+                                                        <option value="hour">
+                                                            按小时
+                                                        </option>
+                                                        <option value="day" selected="selected">
+                                                            按每天
+                                                        </option>
+                                                        <option value="month">
+                                                            按每月
+                                                        </option>
+                                                    </select>
+                                                </div>
                                             </div>
 
 
 
+                                        </div>
+                                        <div class="form-actions">
 
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
 
+                                                    <button type="button" id="statistic_button" class="btn green-meadow">
+                                                        开始查询
+                                                    </button>
 
+                                                    <%--<button type="button" id="return_button" class="btn green-meadow">--%>
+                                                    <%--返回--%>
+                                                    <%--</button>--%>
+
+                                                    <%--<button type="button" id="cancel_button" class="btn default">Cancel</button>--%>
+                                                    <button type="reset" class="btn default">清空</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
                                     <!-- END FORM-->
-
+                                </div>
 
                             </div>
 
@@ -306,40 +370,43 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="../../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
+
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script type="text/javascript" src="../../assets/global/plugins/select2/select2.min.js"></script>
-<script type="text/javascript" src="../../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="../../assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="../../assets/admin/layout4/scripts/layout.js" type="text/javascript"></script>
 <script src="../../assets/admin/layout4/scripts/demo.js" type="text/javascript"></script>
-<script src="../../assets/admin/pages/scripts/table-managed.js"></script>
-
-
-<script type="text/javascript" src="../../assets/scripts/public/frame.js"></script>
+<script src="../../assets/admin/pages/scripts/form-samples.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
 <script type="text/javascript" src="../../assets/scripts/home/mainmenu.js?v"></script>
+<script type="text/javascript" src="../../assets/scripts/public/frame.js"></script>
 
 
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/clockface/js/clockface.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<script src="../../assets/global/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/amcharts/pie.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/amcharts/themes/light.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/amcharts/themes/patterns.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/amcharts/themes/chalk.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/ammap/ammap.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/ammap/maps/js/worldLow.js" type="text/javascript"></script>
-<script src="../../assets/global/plugins/amcharts/amstockcharts/amstock.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="../../assets/admin/pages/scripts/components-pickers.js"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+
+
 
 <!-- END JAVASCRIPTS -->
 </body>
 <!-- END BODY -->
 </html>
 
-<script type="text/javascript" src="../../assets/scripts/agriculture/statistic/statistic_result.js"></script>
-
-
+<script type="text/javascript" src="../../assets/scripts/agriculture/statistic/sensor_statistic_query.js"></script>
 
 

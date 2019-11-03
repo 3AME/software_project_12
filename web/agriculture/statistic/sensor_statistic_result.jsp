@@ -105,7 +105,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="page-head">
                 <!-- BEGIN PAGE TITLE -->
                 <div class="page-title">
-                    <h1></h1>设备管理 <small>设备统计结果</small></h1>
+                    <h1>数据管理 <small>数据统计结果</small></h1>
                 </div>
                 <!-- END PAGE TITLE -->
                 <!-- BEGIN PAGE TOOLBAR -->
