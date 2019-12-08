@@ -1,0 +1,4 @@
+服务器搭建成功
+网址为：http://148.70.249.89:8080/Agriculture/home/login.jsp
+账号：vvv
+密码：vv
