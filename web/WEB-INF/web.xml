@@ -75,7 +75,16 @@
     </servlet-mapping>
     <!-- ================  news end =================           -->
 
-
+    <!-- ================  publicLog begin =================           -->
+    <servlet>
+        <servlet-name>agriculture_publicLog_servlet_action</servlet-name>
+        <servlet-class>agriculture.publicLog.ServletAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>agriculture_publicLog_servlet_action</servlet-name>
+        <url-pattern>/agriculture_publicLog_servlet_action</url-pattern>
+    </servlet-mapping>
+    <!-- ================  publicLog end =================           -->
     <!-- ================  alarm begin =================           -->
     <servlet>
         <servlet-name>agriculture_alarm_servlet_action</servlet-name>
@@ -106,5 +115,25 @@
         <url-pattern>/agriculture_weather_servlet_action</url-pattern>
     </servlet-mapping>
     <!-- ================  weather end =================           -->
+    <servlet>
+        <servlet-name>agriculture_time_servlet_action</servlet-name>
+        <servlet-class>agriculture.time.ServletAction</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>agriculture_time_servlet_action</servlet-name>
+        <url-pattern>/agriculture_time_servlet_action</url-pattern>
+    </servlet-mapping>
+    <!-- 自动启动订阅接口 -->
+    <servlet>
+        <servlet-name>TimeServlet</servlet-name>
+        <servlet-class>servlet.TimeServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TimeServlet</servlet-name>
+        <url-pattern>/servlet/TimeServlet</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
